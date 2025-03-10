@@ -5,32 +5,36 @@ import '../../../core/utils/app_colors.dart';
 
 class RecipeRating extends StatelessWidget {
   const RecipeRating({
-    super.key,
-    required this.rating,
-    this.textColor = AppColors.redPinkMain,
-    this.svgColor = AppColors.redPinkMain,
+    super.key, required this.rating,  this.color=AppColors.pinkSub,
+
   });
 
   final num rating;
-  final Color textColor;
-  final Color svgColor;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 5,
       children: [
         Text(
-          rating.toString(),
+          "$rating",
           style: TextStyle(
-            color: textColor,
+            color: color,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w400,
             fontSize: 12,
           ),
         ),
-        SvgPicture.asset(
-          'assets/icons/star.svg',
-          colorFilter: ColorFilter.mode(svgColor, BlendMode.srcIn),
+        SizedBox(
+          width: 3,
         ),
+        SvgPicture.asset(
+          "assets/svg/star.svg",
+          width: 10,
+          height: 10,
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        )
       ],
     );
   }

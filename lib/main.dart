@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_app_project1/category_detail/data/repositories/recipe_repoitory.dart';
+import 'package:recipe_app_project1/community/data/models/community_model.dart';
+import 'package:recipe_app_project1/community/presentation/manager/community_view_model.dart';
+import 'package:recipe_app_project1/community/presentation/pages/community_view.dart';
+import 'package:recipe_app_project1/home/presentation/pages/home_page_view_model.dart';
+import 'core/client.dart';
 import 'core/dependencies.dart' show providers;
 import 'core/l10n/app_localizations.dart';
 import 'core/localization_viewmodel.dart';
+import 'core/preferences.dart';
 import 'core/routing/router.dart';
 import 'core/sizes.dart';
 import 'core/utils/theme.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() => runApp(MyApp());
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

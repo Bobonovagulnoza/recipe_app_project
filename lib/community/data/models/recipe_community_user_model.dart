@@ -1,12 +1,12 @@
 
-class CommunityUserModel {
+class RecipeCommunityUserModel {
   final int id;
   final String profilePhoto;
   final String username;
   final String firstName;
   final String lastName;
 
-  CommunityUserModel({
+  RecipeCommunityUserModel({
     required this.id,
     required this.profilePhoto,
     required this.username,
@@ -14,8 +14,8 @@ class CommunityUserModel {
     required this.lastName,
   });
 
-  factory CommunityUserModel.fromJson(Map<String, dynamic> json) {
-    return CommunityUserModel(
+  factory RecipeCommunityUserModel.fromJson(Map<String, dynamic> json) {
+    return RecipeCommunityUserModel(
       id: json["id"] ?? 1,
       profilePhoto: json["profilePhoto"] ?? '',
       username: json["username"] ?? '',

@@ -1,12 +1,12 @@
-import 'package:recipe_app_project1/community/data/models/user_model.dart';
-class CommunityModel {
+import 'package:recipe_app_project1/community/data/models/recipe_community_user_model.dart';
+class RecipeCommunityModel {
   final num  timeRequired, rating, reviewsCount;
   final int id;
   final String title, description, photo, created;
 
-  final CommunityUserModel user;
+  final RecipeCommunityUserModel user;
 
-  CommunityModel(
+  RecipeCommunityModel(
       {required this.id,
         required this.timeRequired,
         required this.rating,
@@ -17,8 +17,8 @@ class CommunityModel {
         required this.created,
         required this.user});
 
-  factory CommunityModel.fromJson(Map<String, dynamic> json) {
-    return CommunityModel(
+  factory RecipeCommunityModel.fromJson(Map<String, dynamic> json) {
+    return RecipeCommunityModel(
       id: json["id"] ?? 0,
       timeRequired: json["timeRequired"] ?? 0,
       rating: json["rating"] ?? 0.0,
@@ -28,8 +28,8 @@ class CommunityModel {
       photo: json["photo"] ?? '',
       created: json["created"] ?? '',
       user: json["user"] != null
-          ? CommunityUserModel.fromJson(json["user"])
-          : CommunityUserModel(
+          ? RecipeCommunityUserModel.fromJson(json["user"])
+          : RecipeCommunityUserModel(
           id: 1,
           profilePhoto: '',
           username: '',

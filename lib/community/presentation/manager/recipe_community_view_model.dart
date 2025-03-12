@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_project1/community/data/models/community_model.dart';
+import 'package:recipe_app_project1/community/data/models/recipe_community_model.dart';
 
 import '../../../category_detail/data/repositories/recipe_repoitory.dart';
 
-class CommunityTopViewModel extends ChangeNotifier {
+class RecipeCommunityTopViewModel extends ChangeNotifier {
   bool loading = true;
 
   final RecipeRepository _repo;
@@ -18,16 +18,16 @@ class CommunityTopViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<CommunityModel> communityRecipes = [];
+  List<RecipeCommunityModel> communityRecipes = [];
 
-  CommunityTopViewModel({required RecipeRepository repo}) : _repo = repo {
+  RecipeCommunityTopViewModel({required RecipeRepository repo}) : _repo = repo {
     load(index: _index);
   }
 
   Future load({required int index}) async {
     loading = true;
     notifyListeners();
-    List<CommunityModel> recipes = [];
+    List<RecipeCommunityModel> recipes = [];
     if (index == 0) {
       recipes = await _repo.fetchCommunityRecipes(null, order: "rating", descending: true, );
     } else if (index == 1) {
@@ -42,7 +42,7 @@ class CommunityTopViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String sinceCreated({required CommunityModel model}) {
+  String sinceCreated({required RecipeCommunityModel model}) {
     DateTime now = DateTime.now();
     DateTime created = DateTime.parse(model.created);
     Duration diff = now.difference(created);

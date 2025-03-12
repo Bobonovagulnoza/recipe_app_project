@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RecipeBottomIcon extends StatelessWidget {
-  const RecipeBottomIcon({super.key, required this.onTap, required this.icon});
+class RecipeCommunityBottomIcon extends StatelessWidget {
+  const RecipeCommunityBottomIcon({super.key, required this.onTap, required this.icon});
 
   final VoidCallback onTap;
   final String icon;

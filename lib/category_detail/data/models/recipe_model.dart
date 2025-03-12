@@ -5,6 +5,7 @@ class RecipeModel {
   final int timeRequired;
   final num rating;
 
+
   RecipeModel({
     required this.id,
     required this.categoryId,
@@ -26,4 +27,6 @@ class RecipeModel {
       rating: json['rating'],
     );
   }
+
+  get desc => null;
 }

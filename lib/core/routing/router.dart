@@ -4,16 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app_project1/categories/presentation/manager/categories_cubit.dart';
 import 'package:recipe_app_project1/core/routing/routes.dart';
-import 'package:recipe_app_project1/home/presentation/pages/home_page_view_model.dart';
 import '../../categories/data/repositories/category_repository.dart';
 import '../../categories/presentation/manager/categories_view_model.dart';
 import '../../categories/presentation/pages/categories_page.dart';
 import '../../category_detail/data/repositories/recipe_repoitory.dart';
 import '../../category_detail/presentation/manager/category_detail_view_model.dart';
 import '../../category_detail/presentation/pages/category_detail_page.dart';
-import '../../community/presentation/manager/community_view_model.dart';
-import '../../community/presentation/pages/community_view.dart';
-import '../../home/presentation/pages/home_page.dart';
+import '../../community/presentation/manager/recipe_community_view_model.dart';
+import '../../community/presentation/pages/recipe_community_view.dart';
 import '../../login/data/repositories/auth_repository.dart';
 import '../../login/presentation/manager/login_view_model.dart';
 import '../../login/presentation/pages/login_page.dart';
@@ -35,17 +33,17 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.community,
+  initialLocation: Routes.categories,
   // '/recipe-detail/1'
   routes: [
-    GoRoute(
-      path: Routes.home,
-      builder: (context, state) => ChangeNotifierProvider(
-        create: (context) =>
-            HomePageViewModel(repo: context.read(), recipeRepo: context.read()),
-        child: HomePage(),
-      ),
-    ),
+    // GoRoute(
+    //   path: Routes.home,
+    //   builder: (context, state) => ChangeNotifierProvider(
+    //     create: (context) =>
+    //         HomePageViewModel(repo: context.read(), recipeRepo: context.read()),
+    //     child: HomePage(),
+    //   ),
+    // ),
     GoRoute(
       path: '${Routes.recipe_detail}/:recipeId',
       builder: (context, state) {
@@ -59,19 +57,19 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: Routes.category_detail,
-      builder: (context, state) => CategoryDetailPage(
-        vm: CategoryDetailViewModel(
-          catRepo: CategoryRepository(
-            client: ApiClient(),
-          ),
-          recipeRepo: RecipeRepository(
-            client: ApiClient(),
-          ),
-        )..load(),
-      ),
-    ),
+    // GoRoute(
+    //   path: Routes.category_detail,
+    //   builder: (context, state) => CategoryDetailPage(
+    //     vm: CategoryDetailViewModel(
+    //       catRepo: CategoryRepository(
+    //         client: ApiClient(),
+    //       ),
+    //       recipeRepo: RecipeRepository(
+    //         client: ApiClient(),
+    //       ),
+    //     )..load(),
+    //   ),
+    // ),
     GoRoute(
       path: Routes.login,
       builder: (context, state) => LoginPage(
@@ -122,14 +120,14 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-    // GoRoute(
-    //   path: Routes.categories,
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context)=>CategoriesCubit(catRepo: context.read<CategoryRepository>(),
-    //     ),
-    //     child: CategoriesPage(),
-    //   ),
-    // ),
+    GoRoute(
+      path: Routes.categories,
+      builder: (context, state) => BlocProvider(
+        create: (context)=>CategoriesBloc(catRepo: context.read<CategoryRepository>(),
+        ),
+        child: CategoriesPage(),
+      ),
+    ),
     GoRoute(
       path: Routes.register_profile,
       builder: (context, state) => RegisterProfile(),
@@ -137,10 +135,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.community,
       builder: (context, state) => ChangeNotifierProvider(
-        create: (context) => CommunityTopViewModel(
+        create: (context) => RecipeCommunityTopViewModel(
           repo: context.read(),
-        )..load(index: context.read<CommunityTopViewModel>().index),
-        child: CommunityTopView(),
+        )..load(index: context.read<RecipeCommunityTopViewModel>().index),
+        child: RecipeCommunityTopView(),
       ),
     )
   ],

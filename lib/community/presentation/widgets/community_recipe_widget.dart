@@ -3,29 +3,29 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app_project1/core/routing/routes.dart';
 import '../../../core/utils/app_colors.dart';
-import '../../data/models/community_model.dart';
-import '../manager/community_view_model.dart';
-import 'community_recipe_details.dart';
-import 'community_recipe_image.dart';
-import 'community_recipe_user.dart';
+import '../../data/models/recipe_community_model.dart';
+import '../manager/recipe_community_view_model.dart';
+import 'recipe_community_recipe_details.dart';
+import 'recipe_community_recipe_image.dart';
+import 'recipe_community_recipe_user.dart';
 
-class CommunityRecipeWidget extends StatelessWidget {
-  const CommunityRecipeWidget(
+class RecipeWidgetCommunity extends StatelessWidget {
+  const RecipeWidgetCommunity(
       {super.key, required this.created, required this.model, required this.index});
 
-  final CommunityModel model;
+  final RecipeCommunityModel model;
 
   final String created;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<CommunityTopViewModel>();
+    final vm = context.watch<RecipeCommunityTopViewModel>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 10,
       children: [
-        CommunityRecipeUser(model: model, created: created),
+        RecipeCommunityUser(model: model, created: created),
         Container(
           height: 251,
           width: double.infinity,
@@ -37,8 +37,8 @@ class CommunityRecipeWidget extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () => context.go('${Routes.recipe_detail}/${vm.communityRecipes[index].id}'),
-                  child: CommunityRecipeImage(model: model)),
-              CommunityRecipeDetails(model: model)
+                  child: RecipeCommunityImage(model: model)),
+              RecipeCommunityDetails(model: model)
             ],
           ),
         ),

@@ -1,16 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../core/utils/app_colors.dart';
-import '../../data/models/community_model.dart';
+import '../../data/models/recipe_community_model.dart';
 
-class CommunityRecipeUser extends StatelessWidget {
-  const CommunityRecipeUser({
+class RecipeCommunityUser extends StatelessWidget {
+  const RecipeCommunityUser({
     super.key,
     required this.model,
     required this.created,
   });
 
-  final CommunityModel model;
+  final RecipeCommunityModel model;
   final String created;
 
   @override

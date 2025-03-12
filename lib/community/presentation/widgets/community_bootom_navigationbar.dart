@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../core/routing/routes.dart';
 import '../../../core/utils/app_colors.dart';
 
-import 'community_bottom_icon.dart';
+import 'recipe_community_bottom_icon.dart';
 
 class RecipeBottomNavigationBar extends StatelessWidget {
   const RecipeBottomNavigationBar({super.key});
@@ -55,22 +55,22 @@ class BottomNavigationBarVanilla extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          RecipeBottomIcon(
+          RecipeCommunityBottomIcon(
               onTap: () {
                 context.go(Routes.homePage);
               },
               icon: "assets/icons/home.svg"),
-          RecipeBottomIcon(
+          RecipeCommunityBottomIcon(
               onTap: () {
                 context.push(Routes.community);
               },
               icon: "assets/icons/community.svg"),
-          RecipeBottomIcon(
+          RecipeCommunityBottomIcon(
               onTap: () {
                 context.push(Routes.categories);
               },
               icon: "assets/icons/categories.svg"),
-          RecipeBottomIcon(
+          RecipeCommunityBottomIcon(
               onTap: () {
                 context.push(Routes.meProfile);
               },

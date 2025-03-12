@@ -1,8 +1,8 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:recipe_app_project1/categories/data/repositories/category_repository.dart';
-import 'package:recipe_app_project1/community/presentation/manager/community_view_model.dart';
-import 'package:recipe_app_project1/community/presentation/pages/community_view.dart';
+import 'package:recipe_app_project1/community/presentation/manager/recipe_community_view_model.dart';
+import 'package:recipe_app_project1/community/presentation/pages/recipe_community_view.dart';
 
 import '../category_detail/data/repositories/recipe_repoitory.dart';
 import '../login/data/repositories/auth_repository.dart';
@@ -36,7 +36,7 @@ List<SingleChildWidget> providers = [
     ),
   ),
   ListenableProvider(
-    create: (context) => CommunityTopViewModel(
+    create: (context) => RecipeCommunityTopViewModel(
       repo: RecipeRepository(
         client: context.read(),
       ),

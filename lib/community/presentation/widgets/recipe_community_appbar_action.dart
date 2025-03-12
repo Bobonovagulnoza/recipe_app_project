@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/utils/app_colors.dart';
 
-class AppBarAction extends StatelessWidget {
-  const AppBarAction({super.key, required this.child, required this.onTap});
+class RecipeCommunityAppBarAction extends StatelessWidget {
+  const RecipeCommunityAppBarAction({super.key, required this.child, required this.onTap});
 
   final String child;
   final VoidCallback onTap;

@@ -4,16 +4,16 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../category_detail/presentation/widgets/recipe_rating.dart';
 import '../../../category_detail/presentation/widgets/recipe_time.dart';
-import '../../data/models/community_model.dart';
-import 'community_time.dart';
+import '../../data/models/recipe_community_model.dart';
+import 'recipe_community_time.dart';
 
-class CommunityRecipeDetails extends StatelessWidget {
-  const CommunityRecipeDetails({
+class RecipeCommunityDetails extends StatelessWidget {
+  const RecipeCommunityDetails({
     super.key,
     required this.model,
   });
 
-  final CommunityModel model;
+  final RecipeCommunityModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class CommunityRecipeDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  CommunityTime(
+                  RecipeCommunityTime(
                     time: model.timeRequired,
                     color: Colors.white,
                   ),

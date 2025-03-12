@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/utils/app_colors.dart';
 
-class HeartItem extends StatelessWidget {
-  const HeartItem({super.key, required this.isLike});
+class RecipeCommunityHeartItem extends StatelessWidget {
+  const RecipeCommunityHeartItem({super.key, required this.isLike});
 
   final bool isLike;
 

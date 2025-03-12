@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../manager/community_view_model.dart';
-import '../widgets/community_app_bar.dart';
+import '../manager/recipe_community_view_model.dart';
+import '../widgets/recipe_community_app_bar.dart';
 import '../widgets/community_bootom_navigationbar.dart';
 import '../widgets/community_recipe_widget.dart';
 
-class CommunityTopView extends StatefulWidget {
+class RecipeCommunityTopView extends StatefulWidget {
   // final CommunityTopViewModel vm;
 
-  const CommunityTopView({super.key});
+  const RecipeCommunityTopView({super.key});
 
   @override
-  State<CommunityTopView> createState() => _CommunityTopViewState();
+  State<RecipeCommunityTopView> createState() => _RecipeCommunityTopViewState();
 }
 
-class _CommunityTopViewState extends State<CommunityTopView> {
+class _RecipeCommunityTopViewState extends State<RecipeCommunityTopView> {
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<CommunityTopViewModel>();
+    final vm = context.watch<RecipeCommunityTopViewModel>();
     // print(widget.vm);
     return Scaffold(
-      appBar: CommunityAppBar(
+      appBar: RecipeCommunityAppBar(
         backTap: () {
           context.pop();
         },
@@ -44,7 +44,7 @@ class _CommunityTopViewState extends State<CommunityTopView> {
                 height: 15,
               ),
               itemBuilder: (context, index) => Center(
-                child: CommunityRecipeWidget(
+                child: RecipeWidgetCommunity(
                   model: vm.communityRecipes[index],
                   created: vm.sinceCreated(model: vm.communityRecipes[index]), index: index,
                 ),

@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:recipe_app_project1/core/routing/routes.dart';
 import 'package:recipe_app_project1/core/secure_storage.dart';
 
-import '../community/data/models/community_model.dart';
+import '../community/data/models/recipe_community_model.dart';
 import '../login/data/model/user_model.dart';
 import '../main.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.0.104:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://10.10.3.227:8888/api/v1"));
 
   Future<Map<String, dynamic>> fetchMyProfile() async {
     try {
@@ -66,6 +66,7 @@ class ApiClient {
       throw Exception("error 404");
     }
   }
+
 
   Future<dynamic> fetchRecipeTrendingRecipe() async {
     var response = await dio.get('/recipes/trending-recipe');
@@ -153,16 +154,6 @@ class ApiClient {
     }
   }
 
-  // Future<List<dynamic>> fetchCommunityRecipes(
-  //     int? limit, {
-  //       required String order,
-  //       bool descending = true,
-  //     }) async {
-  //   var response = await dio.get(
-  //       "/recipes/community/list?Limit=${limit ?? ""}&Order=$order&Descending=$descending");
-  //   List<dynamic> data = response.data;
-  //   return data;
-  // }
   Future<List<dynamic>> fetchCommunityRecipes(
       int? limit, {
         required String order,

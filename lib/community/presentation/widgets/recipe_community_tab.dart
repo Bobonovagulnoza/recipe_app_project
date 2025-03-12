@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/utils/app_colors.dart';
-import '../manager/community_view_model.dart';
+import '../manager/recipe_community_view_model.dart';
 
-class CommunityTab extends StatelessWidget {
-  const CommunityTab({
+class RecipeCommunityTab extends StatelessWidget {
+  const RecipeCommunityTab({
     super.key,
     required this.tabText,
     required this.index,
@@ -18,7 +18,7 @@ class CommunityTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var vm = context.watch<CommunityTopViewModel>();
+    var vm = context.watch<RecipeCommunityTopViewModel>();
     return GestureDetector(
       onTap: () {
         vm.index = index;

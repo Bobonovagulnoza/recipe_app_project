@@ -1,4 +1,4 @@
-import '../../../community/data/models/community_model.dart';
+import '../../../community/data/models/recipe_community_model.dart';
 import '../../../core/client.dart';
 import '../../../recipe_detail/data/models/recipe_detail_model.dart';
 import '../models/recipe_model.dart';
@@ -9,7 +9,7 @@ class RecipeRepository {
   final ApiClient client;
   late final RecipeDetailModel recipe;
   // late final RecipeModel recipeModel;
-  List<CommunityModel> communityRecipes = [];
+  List<RecipeCommunityModel> communityRecipes = [];
   Map<int, List<RecipeModel>> recipesByCategory = {};
 
   Future<List<RecipeModel>> fetchRecipesByCategory(int categoryId) async {
@@ -36,14 +36,14 @@ class RecipeRepository {
     return recipe;
   }
 
-  Future<List<CommunityModel>> fetchCommunityRecipes(
+  Future<List<RecipeCommunityModel>> fetchCommunityRecipes(
       int? limit, {
         required String order,
         required bool descending,
       }) async {
     var communitiesData = await client.fetchCommunityRecipes(limit,
         order: order, descending: descending);
-    communityRecipes = communitiesData.map((e) => CommunityModel.fromJson(e)).toList();
+    communityRecipes = communitiesData.map((e) => RecipeCommunityModel.fromJson(e)).toList();
     return communityRecipes;
   }
 }

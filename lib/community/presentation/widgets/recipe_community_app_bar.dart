@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/utils/app_colors.dart';
-import 'community_appbar_action.dart';
-import 'community_tab.dart';
+import 'recipe_community_appbar_action.dart';
+import 'recipe_community_tab.dart';
 
-class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CommunityAppBar({
+class RecipeCommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const RecipeCommunityAppBar({
     super.key,
     required this.backTap,
     required this.action1Tap,
@@ -54,11 +54,11 @@ class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         centerTitle: true,
         actions: [
-          AppBarAction(child: action1, onTap: action1Tap),
+          RecipeCommunityAppBarAction(child: action1, onTap: action1Tap),
           SizedBox(
             width: 4,
           ),
-          AppBarAction(child: action2, onTap: action2Tap)
+          RecipeCommunityAppBarAction(child: action2, onTap: action2Tap)
         ],
         bottom: PreferredSize(
             preferredSize: Size(double.infinity, 30),
@@ -66,16 +66,16 @@ class CommunityAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CommunityTab(
+                RecipeCommunityTab(
 
                   tabText: "Top Recipes",
                   index: 0,
                 ),
-                CommunityTab(
+                RecipeCommunityTab(
                   tabText: "Newest",
                   index: 1,
                 ),
-                CommunityTab(
+                RecipeCommunityTab(
                   tabText: "Oldest",
                   index: 2,
                 ),

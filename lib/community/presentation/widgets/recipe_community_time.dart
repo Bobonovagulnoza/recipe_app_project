@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/utils/app_colors.dart';
 
-class RecipeCommunityTime extends StatelessWidget {
-  const RecipeCommunityTime({
+class CommunityTime extends StatelessWidget {
+  const CommunityTime({
     super.key,
     required this.time,
     this.color=AppColors.pinkSub

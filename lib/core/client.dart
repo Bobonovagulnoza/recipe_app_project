@@ -8,7 +8,7 @@ import '../login/data/model/user_model.dart';
 import '../main.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://10.10.3.227:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://10.10.3.44:8888/api/v1"));
 
   Future<Map<String, dynamic>> fetchMyProfile() async {
     try {
@@ -164,4 +164,26 @@ class ApiClient {
     List<dynamic> data = response.data;
     return data;
   }
+
+  Future<Map<String, dynamic>> fetchRecipeForReviews(int recipeId) async {
+    var response = await dio.get('/recipes/reviews/detail/$recipeId');
+    if (response.statusCode == 200){
+      return Map<String, dynamic>.from(response.data);
+      // return response.data;
+    } else{
+      throw Exception("recipes/reviews/detail/$recipeId so'rovimiz xato ketti!");
+    }
+  }
+
+  Future<List<dynamic>> fetchRecipeReviewsComment(int recipeId)async{
+    var response = await dio.get('/reviews/list?recipe=$recipeId');
+    if(response.statusCode == 200){
+      return response.data;
+    }else{
+      throw Exception("Recipe Review did not come");
+    }
+  }
+
+
+
 }

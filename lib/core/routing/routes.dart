@@ -14,5 +14,9 @@ class Routes {
   static const meProfile="/me-profile";
   static String chefProfileBuilder(int id)=>"/user/$id";
   static const community= "/community";
+  static const  review = '/review/:recipeId';
+  static const String createReview = '/create-review/:recipeId';
+  static String getCreateReview(int recipeId)=> '/create-review/$recipeId';
+  static String getReviews(int recipeId) => '/review/$recipeId';
 
 }

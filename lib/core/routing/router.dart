@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app_project1/categories/presentation/manager/categories_cubit.dart';
 import 'package:recipe_app_project1/core/routing/routes.dart';
+import 'package:recipe_app_project1/reviews/presentation/manager/create_review/create_review_bloc.dart';
 import '../../categories/data/repositories/category_repository.dart';
-import '../../categories/presentation/manager/categories_view_model.dart';
+import '../../categories/presentation/manager/categories_cubit.dart';
 import '../../categories/presentation/pages/categories_page.dart';
 import '../../category_detail/data/repositories/recipe_repoitory.dart';
 import '../../category_detail/presentation/manager/category_detail_view_model.dart';
@@ -27,14 +27,16 @@ import '../../profile/presentation/pages/profile_view_model.dart';
 import '../../profile_register/presentation/pages/profile_register.dart';
 import '../../recipe_detail/presentation/manager/recipe_detail_view_model.dart';
 import '../../recipe_detail/presentation/pages/recipe_detail_page.dart';
+import '../../reviews/presentation/manager/reviews_bloc.dart';
+import '../../reviews/presentation/pages/create_review_view.dart';
+import '../../reviews/presentation/pages/review_page.dart';
 import '../client.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 final GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.categories,
-  // '/recipe-detail/1'
+  initialLocation: Routes.getReviews(2),
+
   routes: [
     // GoRoute(
     //   path: Routes.home,
@@ -140,6 +142,28 @@ final GoRouter router = GoRouter(
         )..load(index: context.read<RecipeCommunityTopViewModel>().index),
         child: RecipeCommunityTopView(),
       ),
-    )
-  ],
+    ),
+    GoRoute(
+      path: Routes.review,
+      builder: (context, state) => BlocProvider(
+        create: (context) => RecipeReviewBloc(
+          repo: context.read(),
+          recipeId: int.parse(state.pathParameters['recipeId']!),
+        ),
+        child: ReviewView(),
+      ),
+    ),
+
+
+
+
+    GoRoute(
+        path: Routes.createReview,
+        builder: (context, state) => BlocProvider(
+          create:(context)=>CreateReviewBloc(),
+          child:CreateReviewView(),
+        )
+    ),
+
+],
 );

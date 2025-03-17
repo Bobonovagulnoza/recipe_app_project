@@ -1,7 +1,8 @@
-import 'package:recipe_app_project1/categories/data/models/categories_model.dart';
 import 'package:recipe_app_project1/categories/data/repositories/category_repository.dart';
-import 'categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/model/categories_model.dart';
+import 'categories_stste.dart';
 class CategoriesEvent{}
 class CategoriesLoading extends CategoriesEvent{}
 class CategoriesBloc extends Bloc<CategoriesEvent,CategoriesState> {

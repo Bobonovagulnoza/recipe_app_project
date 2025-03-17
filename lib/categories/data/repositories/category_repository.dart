@@ -1,7 +1,5 @@
-
 import '../../../core/client.dart';
-import '../models/categories_model.dart';
-
+import '../model/categories_model.dart';
 class CategoryRepository {
   CategoryRepository({required this.client});
 

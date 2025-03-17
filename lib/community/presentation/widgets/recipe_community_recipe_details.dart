@@ -65,7 +65,7 @@ class RecipeCommunityDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  RecipeCommunityTime(
+                  CommunityTime(
                     time: model.timeRequired,
                     color: Colors.white,
                   ),

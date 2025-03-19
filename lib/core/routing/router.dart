@@ -1,169 +1,92 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app_project1/core/routing/routes.dart';
-import 'package:recipe_app_project1/reviews/presentation/manager/create_review/create_review_bloc.dart';
-import '../../categories/data/repositories/category_repository.dart';
-import '../../categories/presentation/manager/categories_cubit.dart';
-import '../../categories/presentation/pages/categories_page.dart';
-import '../../category_detail/data/repositories/recipe_repoitory.dart';
-import '../../category_detail/presentation/manager/category_detail_view_model.dart';
-import '../../category_detail/presentation/pages/category_detail_page.dart';
-import '../../community/presentation/manager/recipe_community_view_model.dart';
-import '../../community/presentation/pages/recipe_community_view.dart';
-import '../../login/data/repositories/auth_repository.dart';
-import '../../login/presentation/manager/login_view_model.dart';
-import '../../login/presentation/pages/login_page.dart';
-import '../../login/presentation/pages/signup_page.dart';
-import '../../onboarding/data/repositories/onboarding_repository.dart';
-import '../../onboarding/presentation/manager/onboarding_view_model.dart';
-import '../../onboarding/presentation/pages/onboarding_end.dart';
-import '../../onboarding/presentation/pages/onboarding_page.dart';
-import '../../profile/data/repositories/profile_repository.dart';
-import '../../profile/data/repositories/recipes_repository.dart';
-import '../../profile/presentation/pages/profile_page.dart';
-import '../../profile/presentation/pages/profile_view_model.dart';
-import '../../profile_register/presentation/pages/profile_register.dart';
-import '../../recipe_detail/presentation/manager/recipe_detail_view_model.dart';
-import '../../recipe_detail/presentation/pages/recipe_detail_page.dart';
-import '../../reviews/presentation/manager/reviews_bloc.dart';
-import '../../reviews/presentation/pages/create_review_view.dart';
-import '../../reviews/presentation/pages/review_page.dart';
-import '../client.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final GoRouter router = GoRouter(
-  navigatorKey: navigatorKey,
-  initialLocation: Routes.getReviews(2),
+import '../../featurs/categories/managers/categories_cubit.dart';
+import '../../featurs/categories/pages/categories_view.dart';
+import '../../featurs/category_detail/manager/category_detail_view_model.dart';
+import '../../featurs/category_detail/pages/category_detail_view.dart';
+import '../../featurs/community/manager/community_cubit.dart';
+import '../../featurs/community/pages/community_view.dart';
+import '../../featurs/home/manager/home_view_model.dart';
+import '../../featurs/home/pages/home_view.dart';
+import '../../featurs/recipe_detail/manager/recipe_detail_view_model.dart';
+import '../../featurs/recipe_detail/pages/recipe_detail_view.dart';
+import '../../featurs/reviews/managers/create_review/create_review_bloc.dart';
+import '../../featurs/reviews/managers/riviews/reviews_bloc.dart';
+import '../../featurs/reviews/pages/create_review_view.dart';
+import '../../featurs/reviews/pages/reviews_view.dart';
 
+final router = GoRouter(
+  initialLocation: Routes.getCreateReview(2),
   routes: [
-    // GoRoute(
-    //   path: Routes.home,
-    //   builder: (context, state) => ChangeNotifierProvider(
-    //     create: (context) =>
-    //         HomePageViewModel(repo: context.read(), recipeRepo: context.read()),
-    //     child: HomePage(),
-    //   ),
-    // ),
     GoRoute(
-      path: '${Routes.recipe_detail}/:recipeId',
-      builder: (context, state) {
-        final int recipeId = int.parse(state.pathParameters['recipeId']!);
-        return ChangeNotifierProvider(
-          create: (context) => RecipeDetailViewModel(
-            recipeRepo: context.read(),
-            recipeId: recipeId,
-          ),
-          child: RecipeDetailPage(recipeId: recipeId),
-        );
-      },
-    ),
-    // GoRoute(
-    //   path: Routes.category_detail,
-    //   builder: (context, state) => CategoryDetailPage(
-    //     vm: CategoryDetailViewModel(
-    //       catRepo: CategoryRepository(
-    //         client: ApiClient(),
-    //       ),
-    //       recipeRepo: RecipeRepository(
-    //         client: ApiClient(),
-    //       ),
-    //     )..load(),
-    //   ),
-    // ),
-    GoRoute(
-      path: Routes.login,
-      builder: (context, state) => LoginPage(
-        vm: LoginViewModel(
-          repo: AuthRepository(
-            client: ApiClient(),
-          ),
+      path: Routes.home,
+      builder: (context, state) => BlocProvider(
+        create: (context) => HomeBloc(
+          catRepo: context.read(),
+          recipeRepo: context.read(),
+          chefRepo: context.read(),
         ),
+        child: HomeView(),
       ),
     ),
     GoRoute(
-      path: Routes.signup,
-      builder: (context, state) => SignUp(),
-    ),
-    GoRoute(
-      path: '/profile',
-      builder: (context, state) => ProfilePage(
-        vm: ProfileViewModel(
-          recipeRepo: BodyRecipesRepo(
-            client: ApiClient(),
-          ),
-          profileRepo: ProfileRepository(
-            client: ApiClient(),
-          ),
-        ),
-      ),
-    ),
-    GoRoute(
-      path: Routes.onboarding,
-      builder: (context, state) => OnboardingPage(
-        ovm: OnBoardingViewModel(
-          repo: OnBoardingRepository(
-            client: ApiClient(),
-          ),
-        ),
-      ),
-    ),
-    GoRoute(
-      path: '/onboarding_end',
-      builder: (context, state) => OnboardingEnd(
-        pvm: ProfileViewModel(
-          recipeRepo: BodyRecipesRepo(
-            client: ApiClient(),
-          ),
-          profileRepo: ProfileRepository(
-            client: ApiClient(),
-          ),
-        ),
+      path: Routes.community,
+      builder: (context, state) => BlocProvider(
+        create: (context) => CommunityCubit(recipeRepo: context.read()),
+        child: CommunityView(),
       ),
     ),
     GoRoute(
       path: Routes.categories,
       builder: (context, state) => BlocProvider(
-        create: (context)=>CategoriesBloc(catRepo: context.read<CategoryRepository>(),
-        ),
-        child: CategoriesPage(),
+        create: (context) => CategoriesBloc(catRepo: context.read()),
+        child: CategoriesView(),
       ),
     ),
     GoRoute(
-      path: Routes.register_profile,
-      builder: (context, state) => RegisterProfile(),
-    ),
-    GoRoute(
-      path: Routes.community,
-      builder: (context, state) => ChangeNotifierProvider(
-        create: (context) => RecipeCommunityTopViewModel(
-          repo: context.read(),
-        )..load(index: context.read<RecipeCommunityTopViewModel>().index),
-        child: RecipeCommunityTopView(),
-      ),
-    ),
-    GoRoute(
-      path: Routes.review,
+      path: Routes.categoryDetail,
       builder: (context, state) => BlocProvider(
-        create: (context) => RecipeReviewBloc(
-          repo: context.read(),
+        create: (context) => CategoryDetailBloc(
+          catRepo: context.read(),
+          recipeRepo: context.read(),
+          selectedId: int.parse(state.pathParameters['categoryId']!),
+        ),
+        child: CategoryDetailView(),
+      ),
+    ),
+    GoRoute(
+      path: Routes.recipeDetail,
+      builder: (context, state) => ChangeNotifierProvider(
+        create: (context) => RecipeDetailViewModel(
+          recipeRepo: context.read(),
           recipeId: int.parse(state.pathParameters['recipeId']!),
         ),
-        child: ReviewView(),
+        child: RecipeDetailView(),
       ),
     ),
-
-
-
-
     GoRoute(
-        path: Routes.createReview,
-        builder: (context, state) => BlocProvider(
-          create:(context)=>CreateReviewBloc(),
-          child:CreateReviewView(),
-        )
+      path: Routes.reviews,
+      builder: (context, state) => BlocProvider(
+        create: (context) => ReviewsBloc(
+          recipeRepo: context.read(),
+          reviewRepo: context.read(),
+          recipeId: int.parse(state.pathParameters['recipeId']!),
+        ),
+        child: ReviewsView(),
+      ),
     ),
-
-],
+    GoRoute(
+      path: Routes.createReview,
+      builder: (context, state) => BlocProvider(
+        create: (context) => CreateReviewBloc(
+          recipeRepo: context.read(),
+          reviewRepo: context.read(),
+        )..add(CreateReviewLoading(recipeId: int.parse(state.pathParameters['recipeId']!))),
+        child: CreateReviewView(),
+      ),
+    ),
+  ],
 );

@@ -19,6 +19,8 @@ class RecipeRepository {
 
   ReviewsRecipeModel? reviewsRecipe;
 
+
+
   Future<List<RecipeModel>> fetchRecipesByCategory(int categoryId) async {
     if (recipesByCategory.containsKey(categoryId) && recipesByCategory[categoryId] != null) {
       return recipesByCategory[categoryId]!;
@@ -65,6 +67,11 @@ class RecipeRepository {
   }
 
   Future<RecipeCreateReviewModel> fetchRecipeForCreateReview(int recipeId) async {
+    var rawRecipe = await client.genericGetRequest<dynamic>('/recipes/create-review/$recipeId');
+    return RecipeCreateReviewModel.fromJson(rawRecipe);
+  }
+
+  Future<RecipeCreateReviewModel> fetchTopChef(int recipeId) async {
     var rawRecipe = await client.genericGetRequest<dynamic>('/recipes/create-review/$recipeId');
     return RecipeCreateReviewModel.fromJson(rawRecipe);
   }

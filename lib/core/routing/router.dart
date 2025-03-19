@@ -17,9 +17,12 @@ import '../../featurs/reviews/managers/create_review/create_review_bloc.dart';
 import '../../featurs/reviews/managers/riviews/reviews_bloc.dart';
 import '../../featurs/reviews/pages/create_review_view.dart';
 import '../../featurs/reviews/pages/reviews_view.dart';
+import '../../featurs/top_chef/manager/top_chef_bloc.dart';
+import '../../featurs/top_chef/manager/top_chef_state.dart';
+import '../../featurs/top_chef/pages/top_chef_page.dart';
 
 final router = GoRouter(
-  initialLocation: Routes.getCreateReview(2),
+  initialLocation: Routes.topChef,
   routes: [
     GoRoute(
       path: Routes.home,
@@ -88,5 +91,8 @@ final router = GoRouter(
         child: CreateReviewView(),
       ),
     ),
+
+
+
   ],
 );

@@ -22,7 +22,7 @@ import '../../featurs/top_chef/manager/top_chef_state.dart';
 import '../../featurs/top_chef/pages/top_chef_page.dart';
 
 final router = GoRouter(
-  initialLocation: Routes.topChef,
+  initialLocation: Routes.getCreateReview(2),
   routes: [
     GoRoute(
       path: Routes.home,

@@ -1,36 +1,61 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import '../manager/top_chef_bloc.dart';
-// import '../pages/top_chef_page.dart';
-//
-// class TopChefPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       appBar: AppBar(title: Text("Top Chef"), backgroundColor: Colors.brown.shade900),
-//       body: BlocBuilder<ChefBloc, ChefState>(
-//         builder: (context, state) {
-//           if (state is ChefLoadingState) {
-//             return Center(child: CircularProgressIndicator());
-//           }
-//           if (state is ChefErrorState) {
-//             return Center(child: Text(state.message, style: TextStyle(color: Colors.white)));
-//           }
-//           if (state is ChefLoadedState) {
-//             return SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   CategorySection(title: "Most Viewed Chefs", chefs: state.mostViewedChefs, color: Colors.redAccent),
-//                   CategorySection(title: "Most Liked Chefs", chefs: state.mostLikedChefs, color: Colors.brown),
-//                   CategorySection(title: "New Chefs", chefs: state.newChefs, color: Colors.grey),
-//                 ],
-//               ),
-//             );
-//           }
-//           return SizedBox();
-//         },
-//       ),
-//     );
-//   }
-// }
+import 'package:equatable/equatable.dart';
+import '../../../data/models/top_chef_model.dart';
+
+enum TopChefsStatus { idle, loading, success, error }
+
+class TopChefsState extends Equatable {
+  final List<TopChefModel> mostViewedChefs;
+  final TopChefsStatus mostViewedChefsStatus;
+  final List<TopChefModel> mostLikedChefs;
+  final TopChefsStatus mostLikedChefsStatus;
+  final List<TopChefModel> newChefs;
+  final TopChefsStatus newChefsStatus;
+
+  const TopChefsState({
+    required this.mostViewedChefs,
+    required this.mostLikedChefs,
+    required this.newChefs,
+    required this.mostViewedChefsStatus,
+    required this.mostLikedChefsStatus,
+    required this.newChefsStatus,
+  });
+
+  factory TopChefsState.initial() {
+    return TopChefsState(
+      mostViewedChefs: [],
+      mostLikedChefs: [],
+      newChefs: [],
+      mostViewedChefsStatus: TopChefsStatus.idle,
+      mostLikedChefsStatus: TopChefsStatus.idle,
+      newChefsStatus: TopChefsStatus.idle,
+    );
+  }
+
+  TopChefsState copyWith({
+    List<TopChefModel>? mostViewedChefs,
+    List<TopChefModel>? mostLikedChefs,
+    List<TopChefModel>? newChefs,
+    TopChefsStatus? mostViewedChefsStatus,
+    TopChefsStatus? mostLikedChefsStatus,
+    TopChefsStatus? newChefsStatus,
+  }) {
+    return TopChefsState(
+      mostViewedChefs: mostViewedChefs ?? this.mostViewedChefs,
+      mostViewedChefsStatus: mostViewedChefsStatus ?? this.mostViewedChefsStatus,
+      mostLikedChefs: mostLikedChefs ?? this.mostLikedChefs,
+      mostLikedChefsStatus: mostLikedChefsStatus ?? this.mostLikedChefsStatus,
+      newChefs: newChefs ?? this.newChefs,
+      newChefsStatus: newChefsStatus ?? this.newChefsStatus,
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+    mostViewedChefs,
+    mostLikedChefs,
+    newChefs,
+    mostViewedChefsStatus,
+    mostLikedChefsStatus,
+    newChefsStatus,
+  ];
+}

@@ -120,16 +120,8 @@ class ApiClient {
     }
   }
 
-  Future<Map<String, dynamic>> fetchTopChef(int recipeId) async {
-    var response = await dio.get('/recipes/reviews/detail/$recipeId');
-    if (response.statusCode == 200) {
-      return response.data;
-    } else {
-      throw Exception("recipes/reviews/detail/$recipeId so'rovimiz xato ketti!");
-    }
-  }
 
-  getChefs(String s) {}
+
 
 
 

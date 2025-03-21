@@ -120,10 +120,12 @@ class ApiClient {
     }
   }
 
-
-
-
-
-
-
+  Future<List< dynamic>> fetchTrendingRecipes(int recipeId) async {
+    var response = await dio.get('/recipes/trending-recipes/$recipeId');
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      throw Exception("recipes/trending-recipes/$recipeId so'rovimiz xato ketti!");
+    }
+  }
 }

@@ -75,4 +75,12 @@ class RecipeRepository {
     var rawRecipe = await client.genericGetRequest<dynamic>('/recipes/create-review/$recipeId');
     return RecipeCreateReviewModel.fromJson(rawRecipe);
   }
+
+  Future<RecipeCreateReviewModel> fetchTrendingRecipes() async {
+    var rawRecipe = await client.genericGetRequest<dynamic>('/recipes/trending-recipes');
+    return RecipeCreateReviewModel.fromJson(rawRecipe);
+  }
+
+
+
 }
